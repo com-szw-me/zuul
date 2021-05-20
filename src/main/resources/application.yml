@@ -1,0 +1,25 @@
+server:
+  port: 9006
+spring:
+  application:
+    name: zuul
+  redis:
+    database: 0
+    host: 8.140.115.114
+    port: 6379
+eureka:
+  client:
+    service-url:
+      defaultZone: http://8.140.115.114:3000/eureka/
+zuul:
+  routes:
+    mmd: /acl/**
+    test: /ttt/**
+  ignored-services: "*"
+  filter:
+    auth-filter:
+      filter-type: pre
+      filter-order: 0
+      should-filter: true
+      black-list: 47.93.190.55
+      white-list: /acl/mmd/user/login, /acl/mmd/user/register
